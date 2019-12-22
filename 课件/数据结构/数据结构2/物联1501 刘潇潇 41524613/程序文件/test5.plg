@@ -1,0 +1,47 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: test5 - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\Users\w10\AppData\Local\Temp\RSP9958.tmp" with contents
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Debug/test5.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"E:\刘潇潇\学习和比赛资料\数据结构\物联1501 刘潇潇 41524613\程序文件\test5.c"
+]
+Creating command line "cl.exe @C:\Users\w10\AppData\Local\Temp\RSP9958.tmp" 
+<h3>Output Window</h3>
+Compiling...
+test5.c
+E:\刘潇潇\学习和比赛资料\数据结构\物联1501 刘潇潇 41524613\程序文件\test5.c(45) : warning C4554: '&' : check operator precedence for possible error; use parentheses to clarify precedence
+E:\刘潇潇\学习和比赛资料\数据结构\物联1501 刘潇潇 41524613\程序文件\test5.c(220) : warning C4013: 'Clearstack' undefined; assuming extern returning int
+E:\刘潇潇\学习和比赛资料\数据结构\物联1501 刘潇潇 41524613\程序文件\test5.c(220) : error C2065: 's' : undeclared identifier
+E:\刘潇潇\学习和比赛资料\数据结构\物联1501 刘潇潇 41524613\程序文件\test5.c(223) : warning C4047: 'function' : 'struct node ** ' differs in levels of indirection from 'int '
+E:\刘潇潇\学习和比赛资料\数据结构\物联1501 刘潇潇 41524613\程序文件\test5.c(223) : warning C4024: 'Push' : different types for formal and actual parameter 1
+E:\刘潇潇\学习和比赛资料\数据结构\物联1501 刘潇潇 41524613\程序文件\test5.c(225) : warning C4047: 'function' : 'struct node *' differs in levels of indirection from 'int '
+E:\刘潇潇\学习和比赛资料\数据结构\物联1501 刘潇潇 41524613\程序文件\test5.c(225) : warning C4024: 'Emptystack' : different types for formal and actual parameter 1
+E:\刘潇潇\学习和比赛资料\数据结构\物联1501 刘潇潇 41524613\程序文件\test5.c(227) : warning C4047: 'function' : 'struct node ** ' differs in levels of indirection from 'int '
+E:\刘潇潇\学习和比赛资料\数据结构\物联1501 刘潇潇 41524613\程序文件\test5.c(227) : warning C4024: 'Pop' : different types for formal and actual parameter 1
+E:\刘潇潇\学习和比赛资料\数据结构\物联1501 刘潇潇 41524613\程序文件\test5.c(229) : warning C4013: 'output' undefined; assuming extern returning int
+E:\刘潇潇\学习和比赛资料\数据结构\物联1501 刘潇潇 41524613\程序文件\test5.c(237) : warning C4047: 'function' : 'struct node ** ' differs in levels of indirection from 'int *'
+E:\刘潇潇\学习和比赛资料\数据结构\物联1501 刘潇潇 41524613\程序文件\test5.c(237) : warning C4024: 'Push' : different types for formal and actual parameter 1
+E:\刘潇潇\学习和比赛资料\数据结构\物联1501 刘潇潇 41524613\程序文件\test5.c(245) : warning C4047: '=' : 'int ' differs in levels of indirection from 'void *'
+E:\刘潇潇\学习和比赛资料\数据结构\物联1501 刘潇潇 41524613\程序文件\test5.c(248) : warning C4047: 'function' : 'struct node ** ' differs in levels of indirection from 'int *'
+E:\刘潇潇\学习和比赛资料\数据结构\物联1501 刘潇潇 41524613\程序文件\test5.c(248) : warning C4024: 'Push' : different types for formal and actual parameter 1
+E:\刘潇潇\学习和比赛资料\数据结构\物联1501 刘潇潇 41524613\程序文件\test5.c(250) : warning C4047: 'function' : 'struct node *' differs in levels of indirection from 'int '
+E:\刘潇潇\学习和比赛资料\数据结构\物联1501 刘潇潇 41524613\程序文件\test5.c(250) : warning C4024: 'Emptystack' : different types for formal and actual parameter 1
+E:\刘潇潇\学习和比赛资料\数据结构\物联1501 刘潇潇 41524613\程序文件\test5.c(252) : warning C4047: 'function' : 'struct node ** ' differs in levels of indirection from 'int *'
+E:\刘潇潇\学习和比赛资料\数据结构\物联1501 刘潇潇 41524613\程序文件\test5.c(252) : warning C4024: 'Pop' : different types for formal and actual parameter 1
+E:\刘潇潇\学习和比赛资料\数据结构\物联1501 刘潇潇 41524613\程序文件\test5.c(261) : warning C4047: 'function' : 'struct node ** ' differs in levels of indirection from 'int *'
+E:\刘潇潇\学习和比赛资料\数据结构\物联1501 刘潇潇 41524613\程序文件\test5.c(261) : warning C4024: 'Push' : different types for formal and actual parameter 1
+执行 cl.exe 时出错.
+
+
+
+<h3>Results</h3>
+test5.obj - 1 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

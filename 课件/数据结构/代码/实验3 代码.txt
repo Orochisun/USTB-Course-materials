@@ -1,0 +1,93 @@
+#include <stdio.h>
+#include <string.h>
+#include<stdlib.h>
+typedef struct node
+{
+	char data;
+	struct node *next;
+}Qnode,*Qlink;
+typedef struct
+{
+	Qnode *front,*rear;
+}linkqueue;
+void Clearqueue(linkqueue *q)  //清空队列
+{
+	q->front->next=NULL;
+	q->rear=q->front;
+}
+void Creatqueue(linkqueue *q)   //创建队列
+{ 
+	q->front=(Qlink)malloc(sizeof(Qnode));
+	q->front->next=NULL;
+	q->rear=q->front;
+}
+int Emptyqueue(linkqueue *q)   //判断队列是否为空
+{
+	if(q->front==q->rear) return (1);
+	else return (0);
+}
+void Enqueue(linkqueue *q,char e)  //元素进队
+{
+	Qlink p;
+	p=(Qlink)malloc(sizeof(Qnode));
+	p->data=e;
+	p->next=NULL;
+	q->rear->next=p;
+	q->rear=p;
+}
+char Dequeue(linkqueue *q)   //元素出队
+{
+	Qlink p;
+	if(Emptyqueue(q)) return(NULL);
+	else
+	{
+		p=q->front;
+		q->front=p->next;
+		free(p);
+		return(q->front->data);
+	}
+}
+void main()
+{
+	char a,b;int c;
+	linkqueue q;
+	Creatqueue(&q);
+	do{
+		a=getchar();
+		switch (a)
+		{
+		case '0': 
+			{
+				if(Emptyqueue(&q)) 
+				{
+					printf("队列为空!\n");
+			        printf("请继续输入!\n");c=1;
+				}
+			    else
+				{
+				    b=Dequeue(&q);
+				    printf("%c出队\n",b);
+				    printf("请继续输入!\n");
+				}
+			}break;
+	    case '@': 
+			{
+			    if(Emptyqueue(&q)) 
+				{printf("队列为空!\n");return;}
+			    else
+				{	
+					printf("全部元素出队:\n");
+				    while(Emptyqueue(&q)!=1)
+					{	
+					    b=Dequeue(&q);
+			     	    printf("%c",b);	
+					}
+				    printf("\n");
+				    return;
+				}
+			}break;
+    	case '\n':break;
+	    default :{Enqueue(&q,a);c=1;}break;
+		}
+	}while(c);
+}

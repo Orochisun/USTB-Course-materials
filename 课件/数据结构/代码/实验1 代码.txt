@@ -1,0 +1,83 @@
+#include<stdio.h>
+#include<stdlib.h>
+typedef int datatype;      //设当前数据元素为整型 
+typedef struct node        //节点类型 
+{
+    datatype data;         //节点的数据域 
+    struct node *next;     //节点的后继指针域 
+}Linknode,*Link;           //linknode为节点说明符，link为节点指针说明符
+	 
+Link Createlist()          //创建单链表的算法 
+{
+	int a,c;
+	float b;
+	Link H,P,r;                         //H,P,r分别为表头，新节点和表尾节点指针 
+	H=(Link)malloc(sizeof(Linknode));   //建立头节点 
+	r=H;
+	do
+	{
+		c=(fflush(stdin),scanf("%f",&b));
+		//printf("%d",c);  //判断输入的是否是整数
+		a=(int)b;
+		if(c!=1||a!=b||a<-32768||a>32767) printf("非法输入!请重新输入!\n");
+	}while(c!=1||a!=b||a<-32768||a>32767);
+	while(a!=0) 
+	{
+		P=(Link)malloc(sizeof(Linknode));//申请新节点 
+		P->data=a;                       //存入数据 
+		r->next=P;                       //新节点链入表尾 
+		r=P;
+	    do
+	    {
+		    c=(fflush(stdin),scanf("%f",&b));  //判断输入的是否是整数
+		    a=(int)b;
+		    if(c!=1||a!=b||a<-32768||a>32767) printf("非法输入!请重新输入!\n");
+	    }while(c!=1||a!=b||a<-32768||a>32767);                
+	}
+	r->next=NULL;                        //将尾节点的指针域置空 
+	return(H);                          //返回已创建的头节点 
+}
+Link Adjmax(Link H)   //求链表中相邻两节点data值之和为最大的第一节点的指针的算法 
+{
+	Link p,p1,q;
+	int i,j;
+	p=p1=H->next;
+	if(p1==NULL) return(p1);  //表空返回 
+	q=p->next;
+	if(q==NULL) return(p1);   //表长=1时返回 
+	i=p->data+q->data;        //相邻两节点data值之和 
+	while(q->next)
+	{
+		p=q;q=q->next;        //取下一对相邻节点的指针 
+		j=p->data+q->data;
+		if(j>i)
+		{
+			p1=p;
+			i=j;              //取和为最大的第一节点指针 
+		}	
+	}
+	return (p1);
+}
+
+void main()              //主函数 
+{	
+	Link A,B,p,q;
+	int a,b;
+	do
+	{
+		printf("请输入一组整数(以0为结束符，数之间回车):\n");
+		p=A=Createlist();           //创建新链表 
+        B=Adjmax(A);             //求链表中相邻两节点data值之和为最大的第一节点的指针
+        a=(int)(B->data);        //取第一节点的data值 
+        printf("第一节点的data值为:%d\n",a);
+        while(p->next)           //释放链表空间 
+        {
+        	q=p;
+        	p=p->next;
+        	free(q);
+        }
+        free(p);
+        printf("是否继续输入下一组整数:是:1,否:0\n");
+        scanf("%d",&b);     
+	}while(b);  
+}

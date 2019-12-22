@@ -1,0 +1,416 @@
+/*#include <stdio.h>
+#include <string.h>
+#include<stdlib.h>
+#define max 200 
+typedef struct node
+{
+	char key[20];
+	int w;
+}Retype;
+typedef struct Bsnode
+{
+	Retype data;
+	struct Bsnode *Lchild,*Rchild;
+}BSN,*BSP;
+
+
+BSP BSTinsert(BSP T,BSP S)
+{
+	BSP q,p;
+	if(T==NULL)
+	    return(S);
+	p=T;
+	q=NULL;
+	while(p)
+	{
+		q=p;
+		if(strcmp(S->data.key,p->data.key)==0)
+		{
+			free(S);
+			return(T);	
+		}
+		if(strcmp(S->data.key,p->data.key)<0)
+		    p=p->Lchild;
+		else
+		    p=p->Rchild;
+    }
+	if(strcmp(S->data.key,q->data.key)<0)
+	    q->Lchild=S;
+	else
+	    q->Rchild=S;
+	return(T);
+
+}
+BSP CreateBst(char A[])
+{int i,j,k=0,p=0;
+char b[15],B[150];
+	BSP T,S;
+	do{
+	if(A[0]=='\0') {gets(B);A=B;}
+	}while(A[0]=='\0');
+	T=NULL;
+do
+{
+	while(A[k]=' ') k++;
+    //while(A[k]!=' ')
+//	{
+   //  p=0;
+	 //switch(A[k])
+	//{
+//	case ' ':break;
+//	default:b[p++]=A[k];
+	//}
+	// b[p++]=A[k];
+//	k++;
+//	}
+	printf("sdfjkl");
+
+	p=0;
+	while(A[k]!=' ')
+	{
+		switch(A[k])
+	{
+		case ' ':break;
+		default:b[p++]=A[k];
+	}
+		
+		k++;
+		if(b[p-1]=='.') b[p-1]='\0';
+		b[p]='\0';
+    
+
+
+		S=(BSP)malloc(sizeof(BSN));
+		for(i=0;i<20;i++)
+		if(b[i]!='\0')
+		{
+		    S->data.key[i]=b[i];
+			S->data.w=i;
+		}
+		else 
+		    break;
+		    printf("%s\n",b);
+		S->Lchild=S->Rchild=NULL;
+		
+		//printf("dfd");
+		T=BSTinsert(T,S);
+	
+		//scanf("%s",&key);
+		
+	}
+//	}
+}while(b[p-1]='.'); 
+	return(T);
+}
+void visit(BSP T)
+{
+	int i;
+    
+        for(i=0;i<=T->data.w;i++)
+          
+	            printf("%c",T->data.key[i]);
+	          // else break;
+	printf(" ");
+}
+
+void inorder(BSP T)
+{int i;
+	if(T)
+	{
+	inorder(T->Lchild);
+	
+	visit(T);
+	
+	inorder(T->Rchild);
+    }
+	//printf("\n");
+}
+
+void main()
+{
+	int a;
+    char A[150];
+	do
+	{
+	 a=0;
+	printf("请输入一句英文!(以.结束)\n");
+	gets(A);
+	do{	//scanf("%s",&key);
+	if(A[0]=='.') 
+		printf("句子为空!请重新输入!\n");
+	gets(A);
+	}while(A[0]=='.');
+	BSP T;
+	T=CreateBst(A);
+	printf("LDR遍历输出:\n");
+	inorder(T);
+	printf("\n");
+	printf("是否继续?是:1否:0");
+	scanf("%d",&a);
+	}while(a);
+}*/
+
+/*#include <stdio.h>
+#include <string.h>
+#include<stdlib.h>
+#define max 200 
+typedef struct node
+{
+	char key[20];
+	int w;
+}Retype;
+typedef struct Bsnode
+{
+	Retype data;
+	struct Bsnode *Lchild,*Rchild;
+}BSN,*BSP;
+
+
+BSP BSTinsert(BSP T,BSP S)
+{
+	BSP q,p;
+	if(T==NULL)
+	    return(S);
+	p=T;
+	q=NULL;
+	while(p)
+	{
+		q=p;
+		if(strcmp(S->data.key,p->data.key)==0)
+		{
+			free(S);
+			return(T);	
+		}
+		if(strcmp(S->data.key,p->data.key)<0)
+		    p=p->Lchild;
+		else
+		    p=p->Rchild;
+    }
+	if(strcmp(S->data.key,q->data.key)<0)
+	    q->Lchild=S;
+	else
+	    q->Rchild=S;
+	return(T);
+
+}
+BSP CreateBst()
+{int i,j,c;
+	BSP T,S;
+	char key[20];
+	T=NULL;
+
+do{
+
+	scanf("%s",&key);
+	c=strlen(key);
+	if(key[0]=='.') printf("句子为空!请重新输入!\n");
+}while(key[0]=='.');
+
+	while(key[c-1]!='.')
+	{
+		S=(BSP)malloc(sizeof(BSN));
+		for(i=0;i<20;i++)
+		if(key[i]!='\0')
+		    {
+		    S->data.key[i]=key[i];S->data.w=i;}
+		else 
+		    break;
+		   // printf("%s\n",key);
+		S->Lchild=S->Rchild=NULL;
+		
+		//printf("dfd");
+		T=BSTinsert(T,S);
+	
+		scanf("%s",&key);
+		c=strlen(key);
+	}
+	if(key[c-1]=='.')
+	{
+		key[c-1]='\0';
+		S=(BSP)malloc(sizeof(BSN));
+		for(i=0;i<20;i++)
+		if(key[i]!='\0')
+		    {
+		    S->data.key[i]=key[i];S->data.w=i;}
+		else 
+		    break;
+		    //printf("%s\n",key);
+		S->Lchild=S->Rchild=NULL;
+		
+		
+		T=BSTinsert(T,S);
+	}
+	   
+	return(T);
+}
+void visit(BSP T)
+{
+	int i;
+    //if(T->data.key[0]!='0')
+        for(i=0;i<=T->data.w;i++)
+          // if(T->data.key[i]!='\0')
+	            printf("%c",T->data.key[i]);
+	          // else break;
+	printf(" ");
+}
+
+void inorder(BSP T)
+{
+	if(T==NULL) return;
+	
+	inorder(T->Lchild);
+	
+	visit(T);
+	
+	inorder(T->Rchild);
+    
+	//printf("\n");
+}
+
+void main()
+{
+	int a;
+	do
+	{
+	 a=0;
+	printf("请输入一句英文!(以.结束)\n");
+	BSP T;
+	T=CreateBst();
+	printf("LDR遍历输出:\n");
+	inorder(T);printf("\n");
+	printf("是否继续?是:1否:0\n");
+	scanf("%d",&a);
+	}while(a);
+}*/
+
+#include <stdio.h>
+#include <string.h>
+#include<stdlib.h>
+#define max 200 
+typedef struct node
+{
+	char key[20];
+	int w;
+}Retype;
+typedef struct Bsnode
+{
+	Retype data;
+	struct Bsnode *Lchild,*Rchild;
+}BSN,*BSP;
+
+
+BSP BSTinsert(BSP T,BSP S)
+{
+	BSP q,p;
+	if(T==NULL)
+	    return(S);
+	p=T;
+	q=NULL;
+	while(p)
+	{
+		q=p;
+		if(strcmp(S->data.key,p->data.key)==0)
+		{
+			free(S);
+			return(T);	
+		}
+		if(strcmp(S->data.key,p->data.key)<0)
+		    p=p->Lchild;
+		else
+		    p=p->Rchild;
+    }
+	if(strcmp(S->data.key,q->data.key)<0)
+	    q->Lchild=S;
+	else
+	    q->Rchild=S;
+	return(T);
+
+}
+BSP CreateBst()
+{int i,j;
+	BSP T,S;
+	char key[20];
+	T=NULL;
+
+do{
+
+	scanf("%s",&key);
+	if(key[0]=='.') printf("句子为空!请重新输入!\n");
+}while(key[0]=='.');
+//	j=0;
+	//while(key[j+1]!=' '||key[j+1]!='\0') j++;
+	 
+	//printf("%s",key);
+	while(key[0]!='.')
+	{
+		S=(BSP)malloc(sizeof(BSN));
+		for(i=0;i<20;i++)
+		if(key[i]!='\0')
+		    {
+		    S->data.key[i]=key[i];S->data.w=i;}
+		else 
+		    break;
+		    //printf("%s\n",key);
+		S->Lchild=S->Rchild=NULL;
+		
+		//printf("dfd");
+		T=BSTinsert(T,S);
+	
+		scanf("%s",&key);
+		
+		//j=0;
+	//	while(key[j+1]!=' '||key[j+1]!='\0') j++;
+	}
+	   /* S=(BSP)malloc(sizeof(BSN));
+		for(i=0;i<20;i++)
+		if(key[i]!='\0')
+		    {
+		    S->data.key[i]=key[i];S->data.w=i;}
+		else 
+		    break;
+		    //printf("%s\n",key);
+		S->Lchild=S->Rchild=NULL;
+		
+		
+		T=BSTinsert(T,S);*/
+	return(T);
+}
+void visit(BSP T)
+{
+	int i;
+    //if(T->data.key[0]!='0')
+        for(i=0;i<=T->data.w;i++)
+          // if(T->data.key[i]!='\0')
+	            printf("%c",T->data.key[i]);
+	          // else break;
+	printf(" ");
+}
+
+void inorder(BSP T)
+{int i;
+	if(T)
+	{
+	inorder(T->Lchild);
+	
+	visit(T);
+	
+	inorder(T->Rchild);
+    }
+	//printf("\n");
+}
+
+void main()
+{
+	int a;
+	do
+	{
+	 a=0;
+	printf("请输入一句英文!(以.结束)\n");
+	BSP T;
+	T=CreateBst();
+	printf("LDR遍历输出:\n");
+	inorder(T);printf("\n");
+	printf("是否继续?是:1否:0");
+	scanf("%d",&a);
+	}while(a);
+}

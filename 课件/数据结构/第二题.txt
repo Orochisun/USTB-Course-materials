@@ -1,0 +1,183 @@
+#include <iostream>
+using namespace std;
+
+void clearstack(slink *top)
+{
+	slink p;
+	while (*top != NULL)
+	{
+		p = (*top)->next;
+		pop(top);
+		*top = p;
+	}
+	*top = NULL;
+}
+
+int emptystack(slink top)
+{
+	if (top == NULL) return (1);
+	else return(0);
+}
+
+int nemptystack (nslink top)
+{
+	if (top == NULL) return (1);
+	else return(0);
+}
+
+void push(slink *top, datatype e)    //入栈
+{
+	slink p;
+	p = (slink)malloc(sizeof(snode));
+	p->data = e;
+	p->next = *top;
+	*top = p;
+}
+
+void npush(nslink * top, datatype1 e)
+{
+	nslink p;
+	p = (nslink)malloc(sizeof(nnode));
+	p->data = e;
+	p->next = *top;
+	*top = p;
+}
+
+datatype1 npop(nslink * top)
+{
+	datatype1 e;
+	nslink p;
+	if (nemptystack(*top)) return (NULL);
+	else
+	{
+		e = (*top)->data;
+		p = *top;
+		*top = (*top)->next;
+		free(p);
+		return(e);
+	}
+}
+
+datatype pop(slink *top)         //出栈
+{
+	datatype e;
+	slink p;
+	if (emptystack(*top)) return (NULL);
+	else
+	{
+		e = (*top)->data;
+		p = *top;
+		*top = (*top)->next;
+		free(p);
+		return(e);
+	}
+}
+
+datatype getstop(slink S)                   //取顶元素
+{
+	if (S != NULL)
+		return (S->data);
+	return (NULL);
+}
+
+datatype1 ngetstop(nslink S)
+{
+	if (S != NULL)
+		return (S->data);
+	return (0);
+}
+
+int precede(datatype x, datatype y)             //优先级
+{
+	switch (x)
+	{
+	case '(':x = 0; break;
+	case '+':
+	case '-':x = 1; break;
+	case '*':
+	case '/':x = 2; break;
+	}
+	switch (y)
+	{
+	case '+':
+	case '-':y = 1; break;
+	case '*':
+	case '/':y = 2; break;
+	case '(':y = 3; break;
+	}
+	if (x >= y)
+		return (1);
+	else return (0);
+}
+
+void mid_post(datatype post[], datatype mid[])
+{
+	int i = 0, j = 0;
+	datatype x;
+	slink S = NULL;
+	do
+	{
+		x = mid[i++];
+		switch (x)
+		{
+		case '#':
+		{
+			while (!emptystack(S))
+				post[j++] = pop(&S);
+		}break;
+		case ')':
+		{
+			while (getstop(S) != '(')
+				post[j++] = pop(&S);
+			pop(&S);
+		}break;
+		case '+':
+		case '-':
+		case '*':
+		case '/':
+		case '(':
+		{
+			while (precede(getstop(S), x))
+				post[j++] = pop(&S);
+			push(&S, x);
+		}break;
+		default:post[j++] = x;
+		}
+	} while (x != '#');
+	push(&S, '#');
+	post[j++] = '#';
+}
+
+（）
+
+void text2()
+{
+	datatype E[N], P[N];
+	int i = 0, j = 0;
+	datatype a;
+	cin >> a;
+	while (i < N)
+	{
+		if (a != '#')
+		{
+			E[i] = a;
+			cin >> a;
+			i++;
+		}
+		else
+		{
+			E[i] = '#';
+			break;
+		}
+	}
+	mid_post(P, E);
+	while (j < N && P[j]!='#')
+		cout << P[j++];
+	cout << endl << postcount(P) << endl;
+}
+
+int main()
+{
+	text2();
+return (0);
+}
